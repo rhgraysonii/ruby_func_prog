@@ -4,7 +4,7 @@ quite the interest in functional style programming, and found her introduction t
 that I came across in my own foray into the field. 
 
 Being A Rubyist, I thought it would be fun to use [Steve Klabnik](http://www.github.com/steveklabnik)'s wonderful Ruby FP
-library,[Frappucino](https://github.com/steveklabnik/frappuccino). That said, let's get started!
+library, [Frappucino](https://github.com/steveklabnik/frappuccino). That said, let's get started!
 
 ## Getting Set Up
 WIP
