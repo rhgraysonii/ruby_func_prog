@@ -3,7 +3,7 @@ Recent I read through [Mary Rose Cook](http://www.maryrosecook.com/)'s wonderful
 quite the interest in functional style programming, and found her introduction to demystify many of the harder points
 that I came across in my own foray into the field. 
 
-Being A Rubyist, I thought it would be fun to use [Steve Klabnik](http://www.github.com/steveklabnik)'s wonderful Ruby FP
+Being A Rubyist, I thought it would be fun to use [Steve Klabnik](http://www.steveklabnik.com)'s wonderful Ruby FP
 library, [Frappucino](https://github.com/steveklabnik/frappuccino). That said, let's get started!
 
 ## Getting Set Up
