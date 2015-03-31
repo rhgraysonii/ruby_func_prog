@@ -186,8 +186,9 @@ puts sam_count
 > Fourth, map and reduce are elemental operations. Every time a person reads a for loop, they have to work through the logic line by line. There are few structural regularities they can use to create a scaffolding on which to hang their understanding of the code. In contrast, map and reduce are at once building blocks that can be combined into complex algorithms, and elements that the code reader can instantly understand and abstract in their mind. “Ah, this code is transforming each item in this collection. It’s throwing some of the transformations away. It’s combining the remainder into a single output.”
 
 > ...
+> ...
 
-#### TODO Exercise 2
+I have skipped one exercise I felt I was not doing justice. I will add it later once I get it right.
 
 > ### Write declaratively, not imperatively
 
@@ -239,41 +240,98 @@ end
 > ...
 
 ```RUBY
-$time = 5
-$car_positions = [1, 1, 1]
-
-def move_cars
-  $car_positions = $car_positions.map { |pos| 
-		     if Random.rand > 0.3
-                       pos += 1
-                     else
-                       pos
-                     end }
+def move_cars(car_positions, time)
+  { cars: car_positions.map { |pos| pos += 1 ? Random.rand > 0.3 : pos },
+    time: time - 1}
 end
 
-def draw_car car_position
+def output_car car_position
   puts '-' * car_position
 end
-d
-def run_step_of_race():
-  $time -= 1; move_cars
+
+def run_step_of_race state
+  move_cars(state[:cars], state[:time])
 end
 
-def draw
-  puts;$car_positions.each { |c| draw_car c }
+def draw car_positions
+  car_positions.each { |c| output_car c }
 end
 
-while $time >= 0 do
-  run_step_of_race()
-  draw()
+def race car_positions, time
+  draw car_positions
+  state = move_cars car_positions, time
+  if state[:time] >= 0
+    res = run_step_of_race(state)
+    race(res[:cars], res[:time])
+  end
 end
 
+race [1, 1, 1], 5
 ```
-> To understand this program, the reader just reads the main loop. “If there is time left, run a step of the race and draw. Check the time again.” If the reader wants to understand more about what it means to run a step of the race, or draw, they can read the code in those functions.
 
-> There are no comments any more. The code describes itself.
+> ...
 
-> Splitting code into functions is a great, low brain power way to make code more readable. This technique uses functions, but it uses them as sub-routines. They parcel up code. The code is not functional in the sense of the guide rope. The functions in the code use state that was not passed as arguments. They affect the code around them by changing external variables, rather than by returning values. To check what a function really does, the reader must read each line carefully. If they find an external variable, they must find its origin. They must see what other functions change that variable.
+> The code is still split into functions, but the functions are functional. There are three signs of this. First, there are no longer any shared variables. time and car_positions get passed straight into race(). Second, functions take parameters. Third, no variables are instantiated inside functions. All data changes are done with return values. race() recurses with the result of run_step_of_race(). Each time a step generates a new state, it is passed immediately into the next step.
 
 In Mary's original there was not use of the maps and other functional paradigms at this point, but due to the ease of
 all of this with Ruby it felt natural to write it in such a manner already.
+
+> Now, here are two functions, zero() and one():
+
+```RUBY
+def zero(s)
+  s[1..-1] if s[0] == "0"
+end
+
+def one(s)
+  s[1..-1] if s[0] == "1"
+end
+```
+
+> zero() takes a string, s. If the first character is '0', it returns the rest of the string. If it is not, it returns None, the default return value of Python functions. one() does the same, but for a first character of '1'.
+
+> Imagine a function called rule_sequence(). It takes a string and a list of rule functions of the form of zero() and one(). It calls the first rule on the string. Unless None is returned, it takes the return value and calls the second rule on it. Unless None is returned, it takes the return value and calls the third rule on it. And so forth. If any rule returns None, rule_sequence() stops and returns None. Otherwise, it returns the return value of the final rule.
+
+> This is some sample input and output:
+
+```RUBY
+puts rule_sequence('0101', [zero, one, zero])
+# => 1
+puts rule_sequence('0101', [zero, zero])
+# => nil
+puts rule_sequence('0101', [zero, one, zero])
+# => 1
+puts rule_sequence('0101', [zero, zero])
+# => nil
+```
+
+> This is the imperative version of rule_sequence():
+
+```RUBY
+def rule_sequence(s, rules)
+  rules.each do |rule|
+    s = rule s
+    unless s
+      break
+  end
+end
+```
+
+
+> ### Exercise 3. 
+> The code above uses a loop to do its work. Make it more declarative by rewriting it as a recursion.
+
+> My solution:
+
+```RUBY
+def rule_sequence s, rules
+  s ? !s || !rules : rule_sequence(rules[0] s, rules[1..-1])
+```
+
+> ### Use Pipelines
+
+> In the previous section, some imperative loops were rewritten as recursions that called out to auxiliary functions. In this section, a different type of imperative loop will be rewritten using a technique called pipelining.
+
+> The loop below performs transformations on dictionaries that hold the name, incorrect country of origin and active status of some bands.
+
+... TODO
