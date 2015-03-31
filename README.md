@@ -20,7 +20,7 @@ That said, let's get started!
 >This is an unfunctional function:
 
 ```RUBY
-a = 0
+$a = 0
 def increment1
     $a
     $a += 1
