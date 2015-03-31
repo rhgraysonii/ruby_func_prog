@@ -1,4 +1,6 @@
 # Functional Programming With Ruby
+#### This is a WIP
+
 Recent I read through [Mary Rose Cook](http://www.maryrosecook.com/)'s wonderful [Introduction To Functional Programming](https://codewords.recurse.com/issues/one/an-introduction-to-functional-programming). I have always had
 quite the interest in functional style programming, and found her introduction to demystify many of the harder points
 that I came across in my own foray into the field. 
