@@ -142,3 +142,49 @@ print sum
 Is the original code from the article
 
 As you can see, Ruby's robust function library for its standard types really helps us out with making these core ops readable.
+
+> ...
+> This code counts how often the word ‘Sam’ appears in a list of strings:
+
+```RUBY
+sentences = ['Mary read a story to Sam and Isla.',
+             'Isla cuddled Sam.',
+             'Sam chortled.']
+
+sam_count = 0
+sentences.each do |s|
+  if s.include? 'Sam'
+    sam_count += 1 if s.include? 'Sam'
+
+puts sam_count
+# => 3
+```
+
+> ...
+
+For the next operation, we don't actually have to use reduce in Ruby. We can simply use the `select` method to invoke a filter.
+
+```RUBY
+sentences = ['Mary read a story to Sam and Isla.','Isla cuddled Sam.','Sam chortled.']
+sam_count = sentences.select('Sam').count
+puts sam_count
+
+# => 3
+                   
+```
+
+> ...
+
+> ### Why are map and reduce better?
+
+> First, they are often one-liners.
+
+> Second, the important parts of the iteration – the collection, the operation and the return value – are always in the same places in every map and reduce.
+
+> Third, the code in a loop may affect variables defined before it or code that runs after it. By convention, maps and reduces are functional.
+
+> Fourth, map and reduce are elemental operations. Every time a person reads a for loop, they have to work through the logic line by line. There are few structural regularities they can use to create a scaffolding on which to hang their understanding of the code. In contrast, map and reduce are at once building blocks that can be combined into complex algorithms, and elements that the code reader can instantly understand and abstract in their mind. “Ah, this code is transforming each item in this collection. It’s throwing some of the transformations away. It’s combining the remainder into a single output.”
+
+> ...
+
+
