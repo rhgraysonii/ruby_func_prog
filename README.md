@@ -378,7 +378,7 @@ pipeline bands, [[set_canada_as_country,
 
 > Let’s look at the transformation functions.
 
-```
+```RUBY
 def assoc(d, key, value):
     e = Hash.new
     e[key] = value; e
