@@ -187,4 +187,93 @@ puts sam_count
 
 > ...
 
+#### TODO Exercise 2
 
+> ### Write declaratively, not imperatively
+
+> The program below runs a race between three cars. At each time step, each car may move forwards or it may stall. At each time step, the program prints out the paths of the cars so far. After five time steps, the race is over.
+
+> This is some sample output:
+
+```
+ -
+ - -
+ - -
+
+ - -
+ - -
+ - - -
+
+ - - -
+ - -
+ - - -
+
+ - - - -
+ - - -
+ - - - -
+
+ - - - -
+ - - - -
+ - - - - -
+```
+
+This is the program (in Ruby):
+
+```RUBY
+time = 5
+car_positions = [1, 1, 1]
+while time >= 0 do
+  time = time -1; puts # newline
+  car_positions.each_with_index do |pos, index|
+    if Random.rand > 0.3
+      car_positions[index] += 1
+    end
+    print '-' * car_positions[index];puts # newline
+  end
+end
+```
+
+> The code is written imperatively. A functional version would be declarative. It would describe what to do, rather than how to do it.
+
+### Use Functions
+> ...
+
+```RUBY
+$time = 5
+$car_positions = [1, 1, 1]
+
+def move_cars
+  $car_positions = $car_positions.map { |pos| 
+		     if Random.rand > 0.3
+                       pos += 1
+                     else
+                       pos
+                     end }
+end
+
+def draw_car car_position
+  puts '-' * car_position
+end
+d
+def run_step_of_race():
+  $time -= 1; move_cars
+end
+
+def draw
+  puts;$car_positions.each { |c| draw_car c }
+end
+
+while $time >= 0 do
+  run_step_of_race()
+  draw()
+end
+
+```
+> To understand this program, the reader just reads the main loop. “If there is time left, run a step of the race and draw. Check the time again.” If the reader wants to understand more about what it means to run a step of the race, or draw, they can read the code in those functions.
+
+> There are no comments any more. The code describes itself.
+
+> Splitting code into functions is a great, low brain power way to make code more readable. This technique uses functions, but it uses them as sub-routines. They parcel up code. The code is not functional in the sense of the guide rope. The functions in the code use state that was not passed as arguments. They affect the code around them by changing external variables, rather than by returning values. To check what a function really does, the reader must read each line carefully. If they find an external variable, they must find its origin. They must see what other functions change that variable.
+
+In Mary's original there was not use of the maps and other functional paradigms at this point, but due to the ease of
+all of this with Ruby it felt natural to write it in such a manner already.
