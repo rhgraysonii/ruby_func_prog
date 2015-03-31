@@ -5,6 +5,10 @@ that I came across in my own foray into the field.
 
 Being A Rubyist, I thought it would be fun to use it for the same case. 
 
+## A Note
+All quoted text are Mary Rose Cook's words from her original blog entry linked to before. I have omitted certain sections
+that were irrelevent to Ruby due to language differences. These are marked with `...`.
+
 That said, let's get started!
 
 >## A guide rope
@@ -53,3 +57,39 @@ puts name_lengths
 ```
 
 We achieve identical output, but the block/symbol syntax is quite nice for std llib functions being passed.
+
+> This is a map that squares every number in the passed collection:
+
+```RUBY
+squares = [0, 1, 2, 3, 4].map { |n| n^2 }
+puts squares
+# => [0, 1, 4, 9, 16]
+```
+
+Since we do not have a std lib function to square an integer, we pass in the block logic like this.
+
+> ...
+
+> The unfunctional code below takes a list of real names and replaces them with randomly assigned code names.
+
+```RUBY
+names = ['Mary', 'Isla', 'Sam']
+code_names = ['Mr. Pink', 'Mr. Orange', 'Mr. Blonde']
+
+names.length.times do |t|
+  names[t] = code_names.sample
+end
+
+puts names
+# => ['Mr. Blonde', 'Mr. Blonde', 'Mr. Blonde']
+```
+
+> (As you can see, this algorithm can potentially assign the same secret code name to multiple secret agents. Hopefully, this won’t be a source of confusion during the secret mission.)
+
+> This can be rewritten as a map:
+
+```RUBY
+names = ['Mary', 'Isla', 'Sam']
+names.map { ['Mr. Pink','Mr. Orange','Mr. Blonde'].sample }
+```
+
