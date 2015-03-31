@@ -314,8 +314,7 @@ puts rule_sequence('0101', [zero, zero])
 def rule_sequence(s, rules)
   rules.each do |rule|
     s = rule s
-    unless s
-      break
+    break unless s
   end
 end
 ```
