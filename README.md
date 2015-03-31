@@ -92,4 +92,53 @@ puts names
 names = ['Mary', 'Isla', 'Sam']
 names.map { ['Mr. Pink','Mr. Orange','Mr. Blonde'].sample }
 ```
+> ### Exercise 1. 
+> Try rewriting the code below as a map. It takes a list of real names and replaces them with code names produced using a
+> more robust strategy.
 
+```RUBY
+names = ['Mary', 'Isla', 'Sam']
+names.length.times do |n|
+  names[n] = names[n].hash
+end
+
+puts names
+# => [2800420116425024173, 3235553524345710207, 3883702095636943701]
+```
+
+> (Hopefully, the secret agents will have good memories and won’t forget each other’s secret code names during the secret mission.)
+
+> ...
+
+Our Ruby solution:
+
+```RUBY
+names = ['Mary', 'Isla', 'Sam']
+
+secret_names = names.map &:hash
+
+# => [2800420116425024173, 3235553524345710207, 3883702095636943701]
+```
+
+> ### Reduce
+
+> Reduce takes a function and a collection of items. It returns a value that is created by combining the items.
+
+> This is a simple reduce. It returns the sum of all the items in the collection.
+
+```RUBY
+sum = [0, 1, 2, 3, 4].reduce :+
+puts sum
+# => 10
+```
+I would just like to note at this point, if you have note seen the Python version of this code, it really speaks to the eloquence of Ruby. For example:
+
+```PYTHON
+sum = reduce(lambda a, x: a + x, [0, 1, 2, 3, 4])
+
+print sum
+# => 10
+```
+Is the original code from the article
+
+As you can see, Ruby's robust function library for its standard types really helps us out with making these core ops readable.
