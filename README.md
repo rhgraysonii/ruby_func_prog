@@ -426,3 +426,12 @@ I have omitted the last section as I am still working on doing it proper.
 > Think of the race. Break code into functions. Make those functions functional. Turn a loop that repeats a process into a recursion.
 
 > Think of the bands. Turn a sequence of operations into a pipeline.
+
+### Moving On
+A deeper examination of functional programming brings us to some very interesting mathematical roots:
+
+#### Lambda Calculus
+
+Sounds scary, huh?
+
+### Coming soon....
