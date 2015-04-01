@@ -434,4 +434,13 @@ A deeper examination of functional programming brings us to some very interestin
 
 Sounds scary, huh?
 
-### Coming soon....
+The most basic, pure function we could do in Ruby is:
+
+```RUBY
+func = ->(x) { x }
+func.call 1
+# => 1
+```
+
+
+```
