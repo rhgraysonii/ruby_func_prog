@@ -404,29 +404,6 @@ def capitalize(band):
 
 Note that some naming has changed from the original in our version.
 
-> Exercise 4. Try and write the pipeline_each function. Think about the order of operations. The bands in the array are passed, one band at a time, to the first transformation function. The bands in the resulting array are passed, one band at a time, to the second transformation function. And so forth.
-
-> My solution:
-
-```RUBY
-def pipeline_each(data, fns):
-  [fns, data].reduce &-> (a, x) a.map { |n| n.x }
-```
-
-> ...
-
-I have omitted the last section as I am still working on doing it proper.
-
-> ### What now?
-
-> Functional code co-exists very well with code written in other styles. The transformations in this article can be applied to any code base in any language. Try applying them to your own code.
-
-> Think of Mary, Isla and Sam. Turn iterations of lists into maps and reduces.
-
-> Think of the race. Break code into functions. Make those functions functional. Turn a loop that repeats a process into a recursion.
-
-> Think of the bands. Turn a sequence of operations into a pipeline.
-
 ### Moving On
 A deeper examination of functional programming brings us to some very interesting mathematical roots:
 
@@ -443,4 +420,6 @@ func.call 1
 ```
 
 
+```
+to be continued when I have more free time...
 ```
